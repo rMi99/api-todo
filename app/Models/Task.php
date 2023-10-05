@@ -12,5 +12,6 @@ class Task extends Model
         'id',
         'task',
         'description',
+        'user_id'
     ];
 }

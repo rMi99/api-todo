@@ -13,18 +13,29 @@ class TaskController extends Controller
     {
         //cors policy
         header('Access-Control-Allow-Origin:*');
-        $Task = Task::all();
-        return response()->json($Task);
+        // $tasks = Task::where('user_id', $id)->get();
+        // $tasks = Task::where('id', 'LIKE', '%' . $id . '%')->get();
+        $tasks = Task::all();
+        return response()->json($tasks);
+    }
+    public function task($id)
+    {
+        // $id=1;
+        //cors policy
+        // header('Access-Control-Allow-Origin:*');
+        $tasks = Task::where('user_id', $id)->get();
+        // $tasks = Task::where('id', 'LIKE', '%' . $id . '%')->get();
+
+        return response()->json($tasks);
+
     }
 
     public function store(Request $request)
     {
-        //cors policy
-        // header('Access-Control-Allow-Origin:*');
+
         $validator = Validator::make($request->all(), [
             'task' => 'required|string|max:255',
         ]);
-
 
         if ($validator->fails()) {
             return response()->json([
@@ -36,6 +47,8 @@ class TaskController extends Controller
             Task::create([
                 'task' => $request->task,
                 'description' => $request->description,
+                'user_id' => $request->user_id,
+
             ]);
             return response()->json(['status', 'Task create  successfully'], 200);
         } catch (Exception $e) {
