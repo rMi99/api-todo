@@ -19,5 +19,5 @@ Route::get('task/{id}',[TaskController::class,'task']);
 Route::put('update/{id}',[TaskController::class,'update']);
 Route::delete('delete/{id}',[TaskController::class,'destroy']);
 Route::post('/logout',[AuthController::class, 'logout']);
-// Route::get('/',[TaskController::class, 'index']);
+
 
