@@ -16,9 +16,10 @@ class Task extends Model
     ];
 
     
-// public function tasks()
+// public function user()
 // {
-//     return $this->hasMany(Task::class);
+//     return $this->belongsTo(User::class);
 // }
+
 
 }
