@@ -46,7 +46,7 @@ class TaskController extends Controller
     }
     public function show($searchId, $userId)
     {
-        $searchedTasks = Task::where('task','id', 'like', '%' . $searchId . '%')
+        $searchedTasks = Task::where('task', 'like', '%' . $searchId . '%')
             ->where('user_id', $userId)
             ->get();
         
