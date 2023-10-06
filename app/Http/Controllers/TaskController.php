@@ -9,12 +9,9 @@ use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
-
     public function task($id)
     {
-        // $id=1;
-        //cors policy
-        // header('Access-Control-Allow-Origin:*');
+        
         $tasks = Task::where('user_id', $id)->get();
         return response()->json($tasks);
     }
@@ -60,27 +57,23 @@ class TaskController extends Controller
         return response()->json($searchedTasks);
     }
     
-
-    
-
     public function update(Request $request, $id)
     {
         $input = $request->all();
 
-        $Task = Task::findOrFail($id);
-        $Task->task = $input['task'];
-        $Task->description = $input['description'];
-        // $Task = $Task->update($request->all());
-        $Task->save();
-        return response()->json($Task, 200);
+        $task = Task::findOrFail($id);
+        $task->task = $input['task'];
+        $task->description = $input['description'];
+        
+        $task->save();
+        return response()->json($task, 200);
     }
 
     public function destroy($id)
     {
-        //cors policy
-        // header('Access-Control-Allow-Origin:*');
-        $Task = Task::findOrFail($id);
-        $Task->delete();
-        return response()->json($Task, 200);
+       
+        $task = task::findOrFail($id);
+        $task->delete();
+        return response()->json($task, 200);
     }
 }
